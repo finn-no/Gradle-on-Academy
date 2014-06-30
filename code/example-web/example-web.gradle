@@ -1,0 +1,19 @@
+apply plugin: 'war'
+apply from: "${rootDir}/gradle/strapon.gradle"
+
+dependencies {
+    compile project(':example-api')
+
+    runtime "ch.qos.logback:logback-classic:${versions.logback}"
+}
+
+task npm(type: Exec) {
+    group = "Build"
+    description = "Installs all Node.js dependencies defined in package.json"
+
+    inputs.file project.file("package.json")
+    outputs.files project.file("node_modules")
+    commandLine "npm", "install"
+}
+
+build.dependsOn npm

@@ -1,0 +1,10 @@
+include 'example-web',
+        'example-api',
+        'example-integration'
+
+rootProject.name = 'example'
+rootProject.buildFileName = 'example.gradle'
+
+rootProject.children.each {
+    it.buildFileName = "${it.name}.gradle"
+}

@@ -1,0 +1,18 @@
+configurations {
+    strapon
+}
+
+dependencies {
+    strapon 'no.finntech:strapon-core-web:3.5@war'
+    strapon 'no.finntech:strapon-java-web:1.19@war'
+}
+
+war {
+    duplicatesStrategy "exclude"
+
+    configurations.strapon.each {
+        from(zipTree(it)) {
+            exclude "**/web.xml"
+        }
+    }
+}
